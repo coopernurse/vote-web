@@ -1,0 +1,18 @@
+---
+name: vote
+components:
+  voteweb:
+    image: docker.io/coopernurse/voteweb
+    httpport: 8080
+    httphealthcheckpath: /ballot
+    maxconcurrency: 10
+    maxdurationseconds: 30
+    environment:
+      - MAPDB_FILE=/data/vote.db
+    volumes:
+      - source: /opt/vote/data
+        target: /data
+    eventsources:
+      voteweb_http:
+        http:
+          hostname: vote.app.maelstromapp.com
