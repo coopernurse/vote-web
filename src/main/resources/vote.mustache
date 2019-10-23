@@ -1,0 +1,48 @@
+{{> header}}
+
+<h1>{{ballot.name}}</h1>
+
+<p>Complete the form below and click "Cast Vote!" when you're done.</p>
+
+<form method="post">
+    <input type="hidden" name="ballotId" value="{{ballot.id}}"/>
+
+    {{#ballot.rangeQuestions}}
+        <b>{{question}}</b>
+        <br/>
+        rank each option (1=hate, 5=love)
+        <table>
+            {{#options}}
+                <tr>
+                    <td>{{.}}</td>
+                    <td>
+                        <fieldset id="range_{{id}}_{{.}}">
+                            <input type="radio" id="range_{{id}}_{{.}}_1" name="range_{{id}}_{{.}}" value="1" />
+                                <label for="range_{{id}}_{{.}}_1">1</label>
+                            <input type="radio" id="range_{{id}}_{{.}}_2" name="range_{{id}}_{{.}}" value="2" />
+                                <label for="range_{{id}}_{{.}}_2">2</label>
+                            <input type="radio" id="range_{{id}}_{{.}}_3" name="range_{{id}}_{{.}}" value="3" />
+                                <label for="range_{{id}}_{{.}}_3">3</label>
+                            <input type="radio" id="range_{{id}}_{{.}}_4" name="range_{{id}}_{{.}}" value="4" />
+                                <label for="range_{{id}}_{{.}}_4">4</label>
+                            <input type="radio" id="range_{{id}}_{{.}}_5" name="range_{{id}}_{{.}}" value="5" />
+                                <label for="range_{{id}}_{{.}}_5">5</label>
+                        </fieldset>
+                    </td>
+                </tr>
+            {{/options}}
+        </table>
+    {{/ballot.rangeQuestions}}
+
+    {{#ballot.questions}}
+        <p>
+            <b>{{question}}</b>
+            <br/>
+            <input type="text" size="40" name="question_{{id}}" />
+        </p>
+    {{/ballot.questions}}
+
+    <input type="submit" value="Cast Vote!" />
+</form>
+
+{{> footer}}

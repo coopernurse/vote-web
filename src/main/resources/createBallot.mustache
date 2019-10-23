@@ -1,0 +1,29 @@
+{{> header}}
+
+<form method="post" action="/ballot">
+    <input type="hidden" name="ballotId" value="{{ballot.id}}"/>
+    <table border="1" cellpadding="10">
+        <tr>
+            <td align="right">Ballot Name:</td>
+            <td><input type="text" size="45" maxlength="80" name="name" value="{{ballot.name}}"/></td>
+        </tr>
+
+        {{#ballot.questions}}
+            {{> questionForm}}
+        {{/ballot.questions}}
+
+        {{#ballot.rangeQuestions}}
+            {{> rangeQuestionForm}}
+        {{/ballot.rangeQuestions}}
+
+        {{> questionForm}}
+
+        {{> rangeQuestionForm}}
+
+        <tr>
+            <td colspan="2"><input type="submit" value="save" /></td>
+        </tr>
+    </table>
+</form>
+
+{{> footer}}

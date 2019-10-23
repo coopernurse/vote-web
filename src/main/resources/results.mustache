@@ -1,0 +1,50 @@
+{{> header}}
+
+<h1>Results</h1>
+
+<h2>{{ballot.name}}</h2>
+
+<p>
+    Range voting results are tabulated using
+    <a href="https://rangevoting.org/RRVr.html">RRV - Reweighted Range Voting</a>
+</p>
+
+<table border="1" cellpadding="10">
+    {{#result.rangeQuestions}}
+        <tr>
+            <td>{{question.question}}</td>
+            <td>
+                <p>Top results:</p>
+                <table border="1">
+                    <tr>
+                        <td>Option</td>
+                        <td>Avg Rating (Reweighted)</td>
+                    </tr>
+                    {{#winners}}
+                        <tr>
+                            <td>{{option}}</td>
+                            <td>{{mean}}</td>
+                        </tr>
+                    {{/winners}}
+                </table>
+            </td>
+        </tr>
+    {{/result.rangeQuestions}}
+</table>
+
+<br/>
+
+<table border="1" cellpadding="10">
+    {{#result.questions}}
+        <tr>
+            <td>{{question}}</td>
+            <td>
+                {{#answers}}
+                    <p>{{.}}</p>
+                {{/answers}}
+            </td>
+        </tr>
+    {{/result.questions}}
+</table>
+
+{{> footer}}
